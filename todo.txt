@@ -1,0 +1,54 @@
+#### Current state:
+- Stage 1: **(DONE)**: Create an agent that can play a single game in a single game mode really well. 
+
+change agent naming convention to "win ratio + 4 digit random number"
+implement training graphics
+
+#### Things to do:
+implement automatic evaluation of agent after saving
+make github account work and create branch
+understand programm, dependencies, and draw nice documentation pictures
+debug speed meassurement while training
+autogenerate training report (agent name, win rate, training speed, trainig result, training episodes, eval speed, eval result, eval episodes, date, ...)
+improve training algorithms (train on best performer, training initially results in drop of win rate)
+make gui for training (select agent, yaml, game mode, bid agent, ...)
+
+- Stage 2: Extend to all game modes, and include the bidding phase. Explore hierarchical planning.
+
+	- implement declare_game (herz_solo/weg) in dummy_agent, static_agent and rule_based_agent
+	- implement declare_game (herz_solo/weg) in rl_agent
+	- implement declare_game (herz_solo/weg) in simulator
+
+	- implement declare_game in gui for all solo suits, wenz, calling all three aces
+
+	- externalise game contracts into one config per contract
+
+	- implement declare_game (all game contracts) in dummy_agent, static_agent and rule_based_agent
+	- implement declare_game (all game contracts) in rl_agent
+	- implement declare_game (all game contracts) in simulator
+
+	- train bid_herz_solo agent to determine if cards are winnable
+	- train opposing_solo_agent to play against declare_herz_solo agent
+	- train declare_herz_solo agent against opposing_herz_solo agent
+	- extend declare_herz_solo agent to non-herz solo
+
+	- implement and train declare_wenz agent
+	- train bid_wenz agent
+	- implement and train opposing_wenz agent
+
+	- implement and train calling_partner, called_partner and opposed_calling agent
+	- train bid_calling agent
+
+- Stage 3: Add money into the equation and have agents maximize return over an entire series of games.
+	3a) implement money rules based on played game (5,10,15, laufende, Schneider, Schwarz, ...)
+	3b) implement bidding phase based on money rules
+	3c) implement selection for p1..3 agent
+	3d) retrain bidding agents on penalty for not playing
+ 
+- Stage 4: Explore cooperative play with humans.
+	4a) implement gui for p0..p4 agent
+	4b) implement money for gui
+	4c) implement gui selection of allowed games
+	4d) implement all other game variants
+		4d1) single player games: Farb-Wenz, Geier, Farb-Geier, Ramsch, Bettel, Bettel-Du, Adler, Käfer, ...
+		4d2) co-op games: Hochzeit, Kreuz-Spiel, ...
